@@ -16,7 +16,13 @@ export class HomePage {
     { title: 'Other Agency Fee', view: 'Month', img: 'OtherAgencyFees.PNG' },
     { title: 'Gain/Lost', view: 'Month', img: 'Gained.PNG' }
   ];
-  agents: Array<string>;
+  agents: any[] = [
+    { id: 1, name: 'Caitlin Parry', selected: false },
+    { id: 2, name: 'Hayden Barlow', selected: false },
+    { id: 3, name: 'Merle Zimmerman', selected: false },
+    { id: 4, name: 'Ning Coles', selected: false },
+    { id: 5, name: 'Peter Burke', selected: false }
+  ];
   selectedItem: any;
   isMobile: boolean;
 
@@ -42,23 +48,6 @@ export class HomePage {
   }
   ngOnInit() {
     this.setItems();
-    this.agents = [
-      'Caitlin Parry',
-      'Hayden Barlow',
-      'Merle Zimmerman',
-      'Ning Coles',
-      'Peter Burke',
-      'Caitlin Parry',
-      'Hayden Barlow',
-      'Merle Zimmerman',
-      'Ning Coles',
-      'Peter Burke',
-      'Caitlin Parry',
-      'Hayden Barlow',
-      'Merle Zimmerman',
-      'Ning Coles',
-      'Peter Burke'
-    ];
   }
 
   slideChanged(slide) {
@@ -93,21 +82,11 @@ export class HomePage {
   }
   setItems() {
     this.agents = [
-      'Caitlin Parry',
-      'Hayden Barlow',
-      'Merle Zimmerman',
-      'Ning Coles',
-      'Peter Burke',
-      'Caitlin Parry',
-      'Hayden Barlow',
-      'Merle Zimmerman',
-      'Ning Coles',
-      'Peter Burke',
-      'Caitlin Parry',
-      'Hayden Barlow',
-      'Merle Zimmerman',
-      'Ning Coles',
-      'Peter Burke'
+      { name: 'Caitlin Parry', selected: false },
+      { name: 'Hayden Barlow', selected: false },
+      { name: 'Merle Zimmerman', selected: false },
+      { name: 'Ning Coles', selected: false },
+      { name: 'Peter Burke', selected: false }
     ];
   }
 

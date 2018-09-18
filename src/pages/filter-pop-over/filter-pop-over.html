@@ -1,78 +1,49 @@
 <ion-content>
-
-  <h4 style="text-align: center;">Filters</h4>
-  <ion-item>
-    <ion-label>Management Type</ion-label>
-    <ion-select [(ngModel)]="managementType">
-      <ion-option>
-        Show All
-      </ion-option>
-      <ion-option>
-        Commercial
-      </ion-option>
-      <ion-option>
-        Residential
-      </ion-option>
-    </ion-select>
-  </ion-item>
-
-  <!-- <ion-item>
-    <ion-label>Show All</ion-label>
-    <ion-checkbox color="secondary" checked="true"></ion-checkbox>
-  </ion-item>
-
-  <ion-item>
-    <ion-label>Commercial</ion-label>
-    <ion-checkbox color="secondary"></ion-checkbox>
-  </ion-item>
-
-  <ion-item>
-    <ion-label>Residential</ion-label>
-    <ion-checkbox color="secondary"></ion-checkbox>
-  </ion-item> -->
-
-  <!-- <ion-item>
-    <ion-searchbar [showCancelButton]="true" placeholder="Agent" showCancelButton color="danger" (ionInput)="filterItems($event)">
-    </ion-searchbar>
-  </ion-item> -->
-  <!-- <ion-list>
-    <ion-item *ngFor="let agent of agents">
-      {{ agent }}
-    </ion-item>
-  </ion-list> -->
-  <!-- <ion-item>
-    <ion-label>Agent</ion-label>
-    Note: the action-sheet and popover interfaces will not work with a multi-value select. 
-    Instead of using the multi-select, build a filtered list of items that are selectable
-    <ion-select [(ngModel)]="agents" multiple="true" interface="popover">
-      <ion-option *ngFor="let agent of agents">
-        {{ agent }}
-      </ion-option>
-    </ion-select>
-  </ion-item> -->
-
-  <ion-item>
-    <p>AGENT SEARCH</p>
-    <ion-searchbar [showCancelButton]="true" placeholder="Agent" showCancelButton color="danger" (ionInput)="filterItems($event)">
-    </ion-searchbar>
-
-    <!-- <div *ngFor="let agent of agents">
-      <ion-checkbox></ion-checkbox>
-      <span>
-        {{ agent }}
-      </span>
-    </div> -->
-  </ion-item>
-
   <ion-list>
-    <ion-item>
-      <ion-label><b>Select All</b></ion-label>
-      <ion-checkbox></ion-checkbox>
-    </ion-item>
-    <ion-item *ngFor="let agent of agents">
-      <ion-label>{{ agent }}</ion-label>
-      <ion-checkbox></ion-checkbox>
-    </ion-item>
-  </ion-list>
+    <ion-item-divider color="primary">
+      Filters
+      <button ion-button item-end outline color="light">Clear</button>
+    </ion-item-divider>
 
+
+    <ion-item>
+      <ion-label color="primary">Management Type</ion-label>
+      <ion-select [(ngModel)]="managementType">
+        <ion-option>
+          Show All
+        </ion-option>
+        <ion-option>
+          Commercial
+        </ion-option>
+        <ion-option>
+          Residential
+        </ion-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- <ion-list-header>
+      Portfolio Filter
+      <button ion-button icon-only item-end clear>
+        <ion-icon name="cog"></ion-icon>
+      </button>
+    </ion-list-header> -->
+    <ion-item>
+      <ion-label floating color="primary">Type to find an agent</ion-label>
+      <ion-input type="string" (keyup)="filterItems($event)"></ion-input>
+      <!-- <ion-searchbar [showCancelButton]="true" placeholder="Type to search" showCancelButton color="danger" (ionInput)="filterItems($event)">
+      </ion-searchbar> -->
+    </ion-item>
+    <!-- <ion-item>
+      <ion-searchbar [showCancelButton]="true" placeholder="Type to search" showCancelButton color="danger" (ionInput)="filterItems($event)">
+      </ion-searchbar>
+    </ion-item> -->
+
+    <ion-list>
+      <ion-item *ngFor="let agent of agents; let i = index">
+        <ion-label>{{ agent.name }}</ion-label>
+        <ion-toggle color="secondary" (ionChange)="selectAgent($event, i)"></ion-toggle>
+      </ion-item>
+    </ion-list>
+
+  </ion-list>
 </ion-content>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import * as _ from 'lodash';
 /**
  * Generated class for the FilterPopOverPage page.
  *
@@ -14,44 +14,39 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'filter-pop-over.html'
 })
 export class FilterPopOverPage {
-  agents: Array<string>;
+  agents: Array<any>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
-
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.agents = new Array();
+  }
   ngOnInit() {
-    console.log(this.navParams.data.agents);
-    this.agents = this.navParams.data.agents;
+    this.agents = new Array<string>();
   }
   setItems() {
-    this.agents = [
-      'Caitlin Parry',
-      'Hayden Barlow',
-      'Merle Zimmerman',
-      'Ning Coles',
-      'Peter Burke',
-      'Caitlin Parry',
-      'Hayden Barlow',
-      'Merle Zimmerman',
-      'Ning Coles',
-      'Peter Burke',
-      'Caitlin Parry',
-      'Hayden Barlow',
-      'Merle Zimmerman',
-      'Ning Coles',
-      'Peter Burke'
-    ];
+    this.agents = this.navParams.data.agents;
   }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad FilterPopOverPage');
   }
   filterItems(ev: any) {
-    this.setItems();
-    let val = ev.target.value;
+    console.log(ev.target.value);
+    if (ev.target.value != '') {
+      this.setItems();
+      let val = ev.target.value;
 
-    if (val && val.trim() !== '') {
-      this.agents = this.agents.filter(function(item) {
-        return item.toLowerCase().includes(val.toLowerCase());
-      });
+      if (val && val.trim() !== '') {
+        this.agents = this.agents.filter(function(item) {
+          return item.name.toLowerCase().includes(val.toLowerCase());
+        });
+      }
+    } else {
+      this.agents = new Array();
     }
+  }
+
+  selectAgent(ev: any, index) {
+    this.agents[index].selected = !this.agents[index].selected;
+    console.log(this.agents);
   }
 }
