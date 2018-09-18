@@ -16,13 +16,8 @@ export class HomePage {
     { title: 'Other Agency Fee', view: 'Month', img: 'OtherAgencyFees.PNG' },
     { title: 'Gain/Lost', view: 'Month', img: 'Gained.PNG' }
   ];
-  agents: any[] = [
-    { id: 1, name: 'Caitlin Parry', selected: false },
-    { id: 2, name: 'Hayden Barlow', selected: false },
-    { id: 3, name: 'Merle Zimmerman', selected: false },
-    { id: 4, name: 'Ning Coles', selected: false },
-    { id: 5, name: 'Peter Burke', selected: false }
-  ];
+  
+  
   selectedItem: any;
   isMobile: boolean;
 
@@ -41,13 +36,14 @@ export class HomePage {
     public popoverCtrl: PopoverController,
     public loadingCtrl: LoadingController
   ) {
+    
     this.selectedItem = navParams.get('chart');
     if (platform.is('mobile')) {
       this.isMobile = true;
     }
   }
   ngOnInit() {
-    this.setItems();
+    
   }
 
   slideChanged(slide) {
@@ -68,8 +64,7 @@ export class HomePage {
 
   presentPopover(ev) {
     let popover = this.popoverCtrl.create(FilterPopOverPage, {
-      contentEle: this.content.nativeElement,
-      agents: this.agents
+      contentEle: this.content.nativeElement
     });
 
     popover.present({
@@ -80,17 +75,9 @@ export class HomePage {
   filterChart(item) {
     this.selectedItem = item;
   }
-  setItems() {
-    this.agents = [
-      { name: 'Caitlin Parry', selected: false },
-      { name: 'Hayden Barlow', selected: false },
-      { name: 'Merle Zimmerman', selected: false },
-      { name: 'Ning Coles', selected: false },
-      { name: 'Peter Burke', selected: false }
-    ];
-  }
 
   clearFilter() {
     this.selectedItem = null;
   }
+  
 }

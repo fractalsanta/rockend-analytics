@@ -2,13 +2,13 @@
   <ion-list>
     <ion-item-divider color="primary">
       Filters
-      <button ion-button item-end outline color="light">Clear</button>
+      <button ion-button item-end outline color="light" (click)="clearFilter">Clear</button>
     </ion-item-divider>
 
 
     <ion-item>
       <ion-label color="primary">Management Type</ion-label>
-      <ion-select [(ngModel)]="managementType">
+      <ion-select [(ngModel)]="managementType"  #C (ionChange)="setManagementType($event)">
         <ion-option>
           Show All
         </ion-option>
@@ -21,34 +21,22 @@
       </ion-select>
     </ion-item>
 
-    <!-- <ion-list-header>
-      Portfolio Filter
-      <button ion-button icon-only item-end clear>
-        <ion-icon name="cog"></ion-icon>
-      </button>
-    </ion-list-header> -->
     <ion-item>
       <ion-label floating color="primary">Type to find an agent</ion-label>
-      <ion-input type="string" (focus)="setItems()" (keyup)="filterItems($event)"></ion-input>
-      <!-- <ion-searchbar [showCancelButton]="true" placeholder="Type to search" showCancelButton color="danger" (ionInput)="filterItems($event)">
-      </ion-searchbar> -->
+      <ion-input type="string"  (keyup)="filterItems($event)"></ion-input>
     </ion-item>
-    <!-- <ion-item>
-      <ion-searchbar [showCancelButton]="true" placeholder="Type to search" showCancelButton color="danger" (ionInput)="filterItems($event)">
-      </ion-searchbar>
-    </ion-item> -->
-
     <ion-list>
       <ion-item *ngFor="let agent of agents; let i = index">
         <ion-label>{{ agent.name }}</ion-label>
-        <ion-toggle color="secondary" (ionChange)="selectAgent($event, i)"></ion-toggle>
+        <ion-checkbox color="secondary" (ionFocus)="setItems()" (ionChange)="setAgent(i)"></ion-checkbox>
       </ion-item>
     </ion-list>
 
+    <!-- <b>{{ managementType }}</b>  
     <ul>
       <li *ngFor="let sA of selectedAgents;">{{ sA.name }}</li>
 
-    </ul>
+    </ul>-->
 
   </ion-list>
 </ion-content>

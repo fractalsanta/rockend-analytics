@@ -20,5 +20,8 @@
       Remove "{{selectedItem.title}}" filter
     </button>
   </div>
+  <ul *ngIf="selectedAgents">
+    <li *ngFor="let sA of selectedAgents;">{{ sA.name }}</li>
 
+  </ul>
 </ion-content>
