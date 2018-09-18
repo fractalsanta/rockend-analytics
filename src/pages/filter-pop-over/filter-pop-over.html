@@ -29,7 +29,7 @@
     </ion-list-header> -->
     <ion-item>
       <ion-label floating color="primary">Type to find an agent</ion-label>
-      <ion-input type="string" (keyup)="filterItems($event)"></ion-input>
+      <ion-input type="string" (focus)="setItems()" (keyup)="filterItems($event)"></ion-input>
       <!-- <ion-searchbar [showCancelButton]="true" placeholder="Type to search" showCancelButton color="danger" (ionInput)="filterItems($event)">
       </ion-searchbar> -->
     </ion-item>
@@ -44,6 +44,11 @@
         <ion-toggle color="secondary" (ionChange)="selectAgent($event, i)"></ion-toggle>
       </ion-item>
     </ion-list>
+
+    <ul>
+      <li *ngFor="let sA of selectedAgents;">{{ sA.name }}</li>
+
+    </ul>
 
   </ion-list>
 </ion-content>

@@ -15,12 +15,12 @@ import * as _ from 'lodash';
 })
 export class FilterPopOverPage {
   agents: Array<any>;
-
+  private selectedAgents;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.agents = new Array();
   }
   ngOnInit() {
-    this.agents = new Array<string>();
+    //this.agents = this.navParams.data.agents;
   }
   setItems() {
     this.agents = this.navParams.data.agents;
@@ -30,23 +30,21 @@ export class FilterPopOverPage {
     console.log('ionViewDidLoad FilterPopOverPage');
   }
   filterItems(ev: any) {
-    console.log(ev.target.value);
-    if (ev.target.value != '') {
-      this.setItems();
-      let val = ev.target.value;
+    this.setItems();
+    let val = ev.target.value;
 
-      if (val && val.trim() !== '') {
-        this.agents = this.agents.filter(function(item) {
-          return item.name.toLowerCase().includes(val.toLowerCase());
-        });
-      }
-    } else {
-      this.agents = new Array();
+    if (val && val.trim() !== '') {
+      this.agents = this.agents.filter(function(item) {
+        return item.name.toLowerCase().includes(val.toLowerCase());
+      });
     }
   }
 
   selectAgent(ev: any, index) {
     this.agents[index].selected = !this.agents[index].selected;
-    console.log(this.agents);
+    this.selectedAgents = this.agents.filter(function(item) {
+      return item.selected === true;
+    });
+    console.log(this.selectedAgents);
   }
 }
