@@ -44,22 +44,46 @@ export class FilterPopOverPage {
     let val = ev.target.value;
 
     if (val && val.trim() !== '') {
-      this.filteredAgents = this.agents.filter(function(item) {
-        return item.name.toLowerCase().includes(val.toLowerCase());
-      });
+      //this.filteredAgents = _.filter(this.filteredAgents, v => !_.includes(this.selectedAgents, v.filteredAgents));
+      if (this.selectedAgents.length == 0) {
+        this.filteredAgents = this.agents.filter(function(item) {
+          return item.name.toLowerCase().includes(val.toLowerCase());
+        });
+      }
+      //Build filter condition if selectedagents are set
     }
   }
 
   public setAgent(index): void {
     this.filteredAgents[index].selected = !this.filteredAgents[index].selected;
-    this.selectedAgents = _.filter(this.filteredAgents, { selected: true });
-    this.filtered = true;
-    console.log(this.selectedAgents);
+
+    this.selectedAgents = _.concat(this.selectedAgents, this.filteredAgents[index]);
+    _.pullAt(this.filteredAgents, index);
+    console.log(this.selectedAgents, this.filteredAgents);
   }
 
+  removeAgent(index) {
+    this.filteredAgents = _.concat(this.filteredAgents, this.selectedAgents[index]);
+    _.pullAt(this.selectedAgents, index);
+    console.log(this.selectedAgents, this.filteredAgents);
+  }
   setManagementType(event) {
     console.log(event);
     this.managementType = event;
     this.filtered = true;
+  }
+
+  clearFilters() {
+    this.selectedAgents.length = 0;
+
+    this.managementType = '';
+    this.setItems();
+
+    this.filteredAgents = _.map(this.filteredAgents, function(x) {
+      x.selected = false;
+      return x;
+    });
+
+    console.log(this.filteredAgents);
   }
 }

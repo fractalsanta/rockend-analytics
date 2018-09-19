@@ -1,7 +1,7 @@
 <ion-content style="padding-bottom:18px">
   <ion-item-divider color="primary">
     Filters
-    <button ion-button item-end outline color="light" (click)="selectedAgents.length = 0; managementType = ''; setItems()">Clear</button>
+    <button ion-button item-end outline color="light" (click)="clearFilters()">Clear</button>
   </ion-item-divider>
   <!-- <ion-list-header>
     Management Type
@@ -42,15 +42,17 @@
   </ion-list-header> -->
   <ion-item *ngIf="managementType">
     <b>Management type:</b>
-    <ul>
-      <li>{{ managementType }}</li>
-    </ul>
+    <p>{{ managementType }}</p>
+
   </ion-item>
   <ion-item *ngIf="selectedAgents.length > 0">
     <b>Agents:</b>
-    <ul>
+    <!-- <ul>
       <li *ngFor="let sA of selectedAgents;">{{ sA.name }}</li>
-    </ul>
+    </ul> -->
   </ion-item>
-
+  <ion-item *ngFor="let sA of selectedAgents; let sAi = index">
+    <ion-label>{{ sA.name }}</ion-label>
+    <ion-checkbox item-right color="secondary" (ionChange)="removeAgent(sAi)"></ion-checkbox>
+  </ion-item>
 </ion-content>
