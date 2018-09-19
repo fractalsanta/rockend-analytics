@@ -1,4 +1,4 @@
-.popover-page {
+/*.popover-page {
   .text-to-change div {
     margin: 10px auto;
   }
@@ -95,4 +95,13 @@
   .dot {
     border-width: $hairlines-width;
   }
+}
+*/
+$select-wp-border-width: 0px;
+.input-cover {
+  max-height: 20px;
+  height: 20px;
+}
+.selectedFilterHeader {
+  border-top: none !important;
 }
