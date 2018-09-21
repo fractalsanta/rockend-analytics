@@ -3,7 +3,7 @@ import { NavController, NavParams, Platform, Slides } from 'ionic-angular';
 import { PopoverController } from 'ionic-angular';
 import { FilterPopOverPage } from '../../pages/filter-pop-over/filter-pop-over';
 import { LoadingController } from 'ionic-angular';
-
+import { PropertyPage } from '../../components/property/property';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -16,8 +16,7 @@ export class HomePage {
     { title: 'Other Agency Fee', view: 'Month', img: 'OtherAgencyFees.PNG' },
     { title: 'Gain/Lost', view: 'Month', img: 'Gained.PNG' }
   ];
-  
-  
+
   selectedItem: any;
   isMobile: boolean;
 
@@ -36,15 +35,12 @@ export class HomePage {
     public popoverCtrl: PopoverController,
     public loadingCtrl: LoadingController
   ) {
-    
     this.selectedItem = navParams.get('chart');
     if (platform.is('mobile')) {
       this.isMobile = true;
     }
   }
-  ngOnInit() {
-    
-  }
+  ngOnInit() {}
 
   slideChanged(slide) {
     if (this.loadedTabs.indexOf(slide.getActiveIndex()) < 0) {
@@ -79,5 +75,4 @@ export class HomePage {
   clearFilter() {
     this.selectedItem = null;
   }
-  
 }
